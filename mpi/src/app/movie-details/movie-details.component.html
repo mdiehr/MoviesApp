@@ -5,7 +5,9 @@
     <p>{{movie.datePublished}}</p>
     <p>Rating: {{movie.rating}}</p>
     @if (movie.posterUrl) {
-      <img [src]="movie.posterUrl" height="300px" />
+      <div class="poster">
+        <img [ngSrc]="movie.posterUrl" width="300" height="450" priority />
+      </div>
     }
     <p>{{movie.summary}}</p>
   } @else {

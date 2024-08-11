@@ -3,12 +3,12 @@ import { MovieExtendedDetail } from '../services/models';
 import { MovieService } from '../services/movies.api';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, NgOptimizedImage],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.less'
 })

@@ -2,7 +2,7 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { IMAGE_CONFIG } from '@angular/common';
+import { IMAGE_CONFIG, IMAGE_LOADER, ImageLoaderConfig } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import { provideState, provideStore } from '@ngrx/store';
 import { authReducer } from './state/auth.state';
@@ -17,6 +17,19 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'auth', reducer: authReducer }),
     provideState({ name: 'genres', reducer: genresReducer }),
     provideState({ name: 'movies', reducer: moviesReducer }),
-    { provide: IMAGE_CONFIG, useValue: { disableImageSizeWarning: true, disableImageLazyLoadWarning: true } }
+    { provide: IMAGE_CONFIG,
+      useValue: {
+        disableImageSizeWarning: true,
+        disableImageLazyLoadWarning: true,
+        placeholderResolution: 40,
+      }
+    },
+    {
+      provide: IMAGE_LOADER,
+      useValue: (config: ImageLoaderConfig) => {
+        const base = config.src.split('._V1_');
+        return `${base[0]}._V1_QL80_UX${config.width}_CR1,0.jpg`;
+      },
+    },
   ]
 };
