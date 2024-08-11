@@ -11,9 +11,5 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './movielist.component.less'
 })
 export class MovielistComponent {
-
   @Input() movies: readonly MovieItem[] | null = [];
-
-
-  
 }
