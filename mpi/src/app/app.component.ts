@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MovieService } from './services/movies.api';
+import { Store } from '@ngrx/store';
+import { AuthActions } from './state/auth.state';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +12,13 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.less'
 })
 export class AppComponent {
-  title = 'mpi';
+  title = 'MPI';
+
+  private store: Store = inject(Store);
+
+  constructor(movieService: MovieService) {
+    movieService.getAuthToken().subscribe(result => {
+      this.store.dispatch(AuthActions.authorized({ token: result.token }));
+    })
+  }
 }

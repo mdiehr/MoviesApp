@@ -1,0 +1,13 @@
+<div>
+  @if(movie) {
+    <h2>{{movie.title}}</h2>
+    <p>{{movie.datePublished}}</p>
+    <p>Rating: {{movie.rating}}</p>
+    @if (movie.posterUrl) {
+      <img [src]="movie.posterUrl" height="300px" />
+    }
+    <p>{{movie.summary}}</p>
+  } @else {
+    <h2>Loading...</h2>
+  }
+</div>
