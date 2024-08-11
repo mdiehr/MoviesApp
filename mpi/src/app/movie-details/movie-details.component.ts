@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { MovieExtendedDetail } from '../services/models';
 import { MovieService } from '../services/movies.api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
   standalone: true,
-  imports: [AsyncPipe, NgOptimizedImage],
+  imports: [AsyncPipe, NgOptimizedImage, RouterLink],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.less'
 })
