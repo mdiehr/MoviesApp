@@ -1,21 +1,22 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, OnDestroy } from "@angular/core";
 import { AuthResponse, GenresResponse, HealthcheckResponse, MovieExtendedDetail, MoviesResponse } from "./models";
-import { select, Store } from "@ngrx/store";
-import { selectAuthFeature, selectToken } from "../state/selectors";
-import { AuthState } from "../state/auth.state";
-import { Observable, Subscription } from "rxjs";
+import { Store } from "@ngrx/store";
+import { filter, Observable, Subscription } from "rxjs";
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
+import { selectIsAuthenticated, selectToken } from "../state/selectors";
 
 
 const BASE_URL = "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com.";
 
 @Injectable({  providedIn: 'root',})
-export class MovieService implements OnDestroy {
+export class MovieService implements Resolve<boolean>, OnDestroy {
 
   private http: HttpClient = inject(HttpClient);
   private store: Store = inject(Store);
 
-  private token$: Observable<string> = this.store.select(selectToken)
+  private isAuthed$: Observable<boolean> = this.store.select(selectIsAuthenticated);
+  private token$: Observable<string> = this.store.select(selectToken);
   private currentToken: string = '';
 
   private subscriptions: Subscription;
@@ -28,6 +29,10 @@ export class MovieService implements OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  resolve(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
+    return this.isAuthed$.pipe(filter(p => p));
   }
 
   _getHeaders(): { [header: string]: string } {
