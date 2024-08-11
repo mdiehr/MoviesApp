@@ -52,16 +52,18 @@ export class SearchbarComponent {
       queryParamsHandling: 'merge',
       relativeTo: this.activatedRoute,
     });
-    this.search(this.searchForm.value.title || undefined, this.searchForm.value.genre || undefined)
+    this.search(this.searchForm.value.title || undefined, this.searchForm.value.genre || undefined);
   }
 
   search(title?: string, genre?: string) {
-    
     const page = this.currentPage || 1;
-    // Get the movies
-    this.store.dispatch(MovieActions.fetchingMovies());
-    this.movieService.getMovies(page, this.PER_PAGE, title, genre).subscribe(movies => {
-        this.store.dispatch(MovieActions.retrievedMovies({movies, page}))
-      });
+    // Only search if a title is present to search for
+    if (title && title !== '') {
+      // Go to the movies
+      this.store.dispatch(MovieActions.fetchingMovies());
+      this.movieService.getMovies(page, this.PER_PAGE, title, genre).subscribe(movies => {
+          this.store.dispatch(MovieActions.retrievedMovies({movies, page}))
+        });
+    }
   }
 }
