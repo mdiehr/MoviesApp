@@ -28,8 +28,6 @@ export class HomeviewComponent {
 
   constructor() {
     this.activatedRoute.queryParamMap.subscribe(map => {
-      console.info('Route change:');
-      console.info(map);
       this.page = Number.parseInt(map.get('page') || '1');
       this.search = map.get('search') || '';
     });

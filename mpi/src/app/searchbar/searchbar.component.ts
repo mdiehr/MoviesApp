@@ -36,7 +36,7 @@ export class SearchbarComponent {
       this.currentPage = Number.parseInt(map.get('page') || '1');
       this.currentSearch = map.get('search') || '';
       this.search(this.currentSearch, this.searchForm.value.genre || undefined)
-    })
+    });
   }
 
   handleSubmit($event: any) {

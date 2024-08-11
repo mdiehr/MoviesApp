@@ -1,4 +1,5 @@
 <div>
+  @let movie = movie$ | async;
   @if(movie) {
     <h2>{{movie.title}}</h2>
     <p>{{movie.datePublished}}</p>
