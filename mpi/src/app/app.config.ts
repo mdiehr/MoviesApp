@@ -27,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: IMAGE_LOADER,
       useValue: (config: ImageLoaderConfig) => {
+        // https://stackoverflow.com/questions/73089650/what-are-the-parameters-for-aws-media-amazon-image-hosting
         const base = config.src.split('._V1_');
         return `${base[0]}._V1_QL80_UX${config.width}_CR1,0.jpg`;
       },

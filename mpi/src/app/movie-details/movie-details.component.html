@@ -1,8 +1,9 @@
 <div>
+  <a [routerLink]="['/']">Go Back</a>
   @let movie = movie$ | async;
   @if(movie) {
     <h2>{{movie.title}}</h2>
-    <p>{{movie.datePublished}}</p>
+    <p>Released {{movie.datePublished}}</p>
     <p>Rating: {{movie.rating}}</p>
     @if (movie.posterUrl) {
       <div class="poster">
@@ -10,6 +11,32 @@
       </div>
     }
     <p>{{movie.summary}}</p>
+    <p>
+      Starring...
+      @for(actor of movie.mainActors; track $index) {
+        <div>{{actor}}</div>
+      }
+    </p>
+    <p>
+      Directed by...
+      @for(director of movie.directors; track $index) {
+        <div>{{director}}</div>
+      }
+    </p>
+    <p>
+      Written by...
+      @for(writer of movie.writers; track $index) {
+        <div>{{writer}}</div>
+      }
+    </p>
+    <p>
+      Genres...
+      @for(genre of movie.genres; track $index) {
+        <div>
+          <a [routerLink]="['/']" [queryParams]="{ genre: genre.title}">{{genre.title}}</a>
+        </div>
+      }
+    </p>
   } @else {
     <h2>Loading...</h2>
   }
