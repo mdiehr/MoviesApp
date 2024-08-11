@@ -10,9 +10,18 @@
   @else if (moviesFeature.loading) {
     <div>Loading...</div>
   } @else {
+    <div class="page-controls">
+      <div class="controls">
+        <a [class.disabled]="moviesFeature.page === 1" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page - 1, search: search}">Prev</a>
+        Page {{moviesFeature.page}} of {{moviesFeature.pageMax}}
+        <a [class.disabled]="moviesFeature.page >= moviesFeature.pageMax" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page + 1, search: search}">Next</a>
+      </div>
+    </div>
+
     <div>
       <app-movielist [movies]="(movies$ | async)"></app-movielist>
     </div>
+    
     <div class="page-controls">
       <div class="controls">
         <a [class.disabled]="moviesFeature.page === 1" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page - 1, search: search}">Prev</a>
