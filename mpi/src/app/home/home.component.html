@@ -19,13 +19,13 @@
     </div>
 
     <div>
-      <app-movielist [movies]="(movies$ | async)"></app-movielist>
+      <app-movies [movies]="(movies$ | async)"></app-movies>
     </div>
     
     <div class="page-controls">
       <div class="controls">
-        <a [class.disabled]="moviesFeature.page === 1" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page - 1, search: search}">Prev</a>
-        <a [class.disabled]="moviesFeature.page >= moviesFeature.pageMax" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page + 1, search: search}">Next</a>
+        <a [class.disabled]="moviesFeature.page === 1" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page - 1, search: search, genre: genre}">Prev</a>
+        <a [class.disabled]="moviesFeature.page >= moviesFeature.pageMax" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page + 1, search: search, genre: genre}">Next</a>
       </div>
       Page {{moviesFeature.page}} of {{moviesFeature.pageMax}}
     </div>

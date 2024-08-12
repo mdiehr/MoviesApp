@@ -4,12 +4,12 @@ import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
-  selector: 'app-movielist',
+  selector: 'app-movies',
   standalone: true,
   imports: [RouterLink, NgOptimizedImage],
-  templateUrl: './movielist.component.html',
-  styleUrl: './movielist.component.less'
+  templateUrl: './movies.component.html',
+  styleUrl: './movies.component.less'
 })
-export class MovielistComponent {
+export class MoviesComponent {
   @Input() movies: readonly MovieItem[] | null = [];
 }
