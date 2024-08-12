@@ -29,7 +29,7 @@ export class SearchbarComponent implements OnInit {
     genre: new FormControl(''),
   });
 
-  private PER_PAGE = 6;
+  private PER_PAGE = 12;
 
   private currentPage = 1;
   private currentGenre: string | null = null;

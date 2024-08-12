@@ -17,6 +17,7 @@ export interface MovieState {
   initial: boolean;
   page: number;
   pageMax: number;
+  movieDetails: ReadonlyMap<string, MovieExtendedDetail>;
 }
 
 const initialMoviesState: MovieState = {
@@ -25,6 +26,7 @@ const initialMoviesState: MovieState = {
   initial: true,
   page: 1,
   pageMax: 1,
+  movieDetails: new Map(),
 };
 
 export const moviesReducer = createReducer(
@@ -39,5 +41,11 @@ export const moviesReducer = createReducer(
   on(MovieActions.fetchingMovies, (state) => {
     return {...state, loading: true };
   }),
-)
+  on(MovieActions.retrievedMovieDetails, (state, { movie }) => {
+    const newMovieMap = new Map(state.movieDetails);
+    newMovieMap.set(movie.id, movie);
+    console.info(`Stored movie ${movie.title}`);
+    return {...state, movieDetails: newMovieMap};
+  }),
+);
 
