@@ -1,0 +1,20 @@
+@for(movie of movies; track movie.id) {
+  <div class="movie-item">
+    <div class="poster">
+      @if (movie.posterUrl) {
+        <img [ngSrc]="movie.posterUrl"
+          width="100"
+          height="150"
+          alt="Movie Poster Image"
+          />
+      }
+    </div>
+    <div class="description">
+      <h3><a [routerLink]="['movie', movie.id]">{{movie.title}}</a></h3>
+      <p>Rating: {{movie.rating}}</p>
+    </div>
+
+  </div>
+} @empty {
+  <div>No results.</div>
+}

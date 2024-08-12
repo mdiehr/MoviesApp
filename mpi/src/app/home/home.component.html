@@ -1,0 +1,33 @@
+<div>
+  <app-searchbar></app-searchbar>
+</div>
+
+@let moviesFeature = moviesFeature$ | async;
+@if (moviesFeature) {
+  @if (moviesFeature.initial) {
+    <div>Search by a movie title!</div>
+  }
+  @else if (moviesFeature.loading) {
+    <div>Loading...</div>
+  } @else {
+    <div class="page-controls">
+      <div class="controls">
+        <a [class.disabled]="moviesFeature.page === 1" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page - 1, search: search}">Prev</a>
+        Page {{moviesFeature.page}} of {{moviesFeature.pageMax}}
+        <a [class.disabled]="moviesFeature.page >= moviesFeature.pageMax" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page + 1, search: search}">Next</a>
+      </div>
+    </div>
+
+    <div>
+      <app-movies [movies]="(movies$ | async)"></app-movies>
+    </div>
+    
+    <div class="page-controls">
+      <div class="controls">
+        <a [class.disabled]="moviesFeature.page === 1" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page - 1, search: search, genre: genre}">Prev</a>
+        <a [class.disabled]="moviesFeature.page >= moviesFeature.pageMax" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page + 1, search: search, genre: genre}">Next</a>
+      </div>
+      Page {{moviesFeature.page}} of {{moviesFeature.pageMax}}
+    </div>
+  }
+}

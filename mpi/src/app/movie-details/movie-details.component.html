@@ -1,0 +1,45 @@
+<div>
+  <a [routerLink]="['/']">Go Back</a>
+  @let movie = movie$ | async;
+  @if(movie) {
+    <h1>{{movie.title}}</h1>
+    <p>Released: {{movie.datePublished}}</p>
+    <p>Rating: {{movie.rating}}</p>
+    <p>Length: {{movie.duration}}</p>
+    <p>Stars: {{movie.ratingValue || 'None'}} / {{movie.bestRating}}</p>
+    @if (movie.posterUrl) {
+      <div class="poster">
+        <img [ngSrc]="movie.posterUrl" width="300" height="450" priority alt="Movie Poster Image" />
+      </div>
+    }
+    <p>{{movie.summary}}</p>
+    <p>
+      Starring...
+      @for(actor of movie.mainActors; track $index) {
+        <div>{{actor}}</div>
+      }
+    </p>
+    <p>
+      Directed by...
+      @for(director of movie.directors; track $index) {
+        <div>{{director}}</div>
+      }
+    </p>
+    <p>
+      Written by...
+      @for(writer of movie.writers; track $index) {
+        <div>{{writer}}</div>
+      }
+    </p>
+    <p>
+      Genres...
+      @for(genre of movie.genres; track $index) {
+        <div>
+          <a [routerLink]="['/']" [queryParams]="{ genre: genre.title}">{{genre.title}}</a>
+        </div>
+      }
+    </p>
+  } @else {
+    <h2>Loading...</h2>
+  }
+</div>
