@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "main" ]
 
+# This is mostly from looking at other examples & documentation
 jobs:
   build:
     runs-on: ubuntu-latest
