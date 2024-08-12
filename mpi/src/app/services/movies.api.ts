@@ -16,7 +16,7 @@ export class MovieService implements OnDestroy {
   private store: Store = inject(Store);
 
   private token$: Observable<string> = this.store.select(selectToken);
-  private currentToken: string = '';
+  private currentToken = '';
 
   private subscriptions: Subscription;
 
@@ -30,7 +30,7 @@ export class MovieService implements OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  _getHeaders(): { [header: string]: string } {
+  _getHeaders(): Record<string, string> {
     return {
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.currentToken}`
@@ -59,15 +59,15 @@ export class MovieService implements OnDestroy {
     return this.http.get<AuthResponse>(`${BASE_URL}/auth/token`);
   }
   
-  getGenres(page: number = 1, limit: number = 10) {
+  getGenres(page = 1, limit = 10) {
     return this.http.get<GenresResponse>(`${BASE_URL}/genres/movies`, {
       headers: this._getHeaders(),
       params: { page, limit }
     });
   }
 
-  getMovies(page: number = 1, limit: number = 10, search?: string, genre?: string) {
-    const params: { [param: string]: string | number } = { page, limit };
+  getMovies(page: number, limit: number, search?: string, genre?: string) {
+    const params: Record<string, string | number> = { page, limit };
     if (search && search !== '') {
       params['search'] = search;
     }
