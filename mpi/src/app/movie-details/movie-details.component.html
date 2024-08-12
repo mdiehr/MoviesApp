@@ -5,6 +5,7 @@
     <h1>{{movie.title}}</h1>
     <p>Released: {{movie.datePublished}}</p>
     <p>Rating: {{movie.rating}}</p>
+    <p>Length: {{movie.duration}}</p>
     <p>Stars: {{movie.ratingValue || 'None'}} / {{movie.bestRating}}</p>
     @if (movie.posterUrl) {
       <div class="poster">
