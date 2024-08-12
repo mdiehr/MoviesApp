@@ -18,6 +18,7 @@ jobs:
       run: |
         npm ci
         npm run build:prod
+        cp ./dist/browser/index.html ./dist/browser/404.html
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v4
       with:
