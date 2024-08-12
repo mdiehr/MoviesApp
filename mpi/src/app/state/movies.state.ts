@@ -1,5 +1,5 @@
 import { createActionGroup, createReducer, emptyProps, on, props } from '@ngrx/store';
-import { GenresResponse, MovieItem, MovieExtendedDetail, MoviesResponse, GenreItem } from '../services/models';
+import { GenresResponse, MovieItem, MovieExtendedDetail, MoviesResponse } from '../services/models';
 
 export const MovieActions = createActionGroup({
   source: 'Movies',
@@ -17,6 +17,7 @@ export interface MovieState {
   initial: boolean;
   page: number;
   pageMax: number;
+  movieDetails: ReadonlyMap<string, MovieExtendedDetail>;
 }
 
 const initialMoviesState: MovieState = {
@@ -25,6 +26,7 @@ const initialMoviesState: MovieState = {
   initial: true,
   page: 1,
   pageMax: 1,
+  movieDetails: new Map(),
 };
 
 export const moviesReducer = createReducer(
@@ -39,19 +41,10 @@ export const moviesReducer = createReducer(
   on(MovieActions.fetchingMovies, (state) => {
     return {...state, loading: true };
   }),
-)
-
-export const GenreActions = createActionGroup({
-  source: 'Genres',
-  events: {
-    'Retrieved Genres': props<{ genres: GenresResponse }>(),
-  },
-});
-
-const initialGenresState: readonly GenreItem[] = [];
-export const genresReducer = createReducer(
-  initialGenresState,
-  on(GenreActions.retrievedGenres, (state, { genres }) => {
-    return [...state, ...genres.data];
+  on(MovieActions.retrievedMovieDetails, (state, { movie }) => {
+    const newMovieMap = new Map(state.movieDetails);
+    newMovieMap.set(movie.id, movie);
+    return {...state, movieDetails: newMovieMap};
   }),
-)
+);
+

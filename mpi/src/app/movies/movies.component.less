@@ -1,7 +1,19 @@
+.movie-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
 .movie-item {
+  padding: 4px;
   display: flex;
   flex-direction: row;
   gap: 16px;
+  width: 400px;
+  min-width: 400px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
 }
 
 .poster {
@@ -10,9 +22,20 @@
 }
 
 h3 {
+  margin-top: 0;
   a {
     font-size: 16pt;
     font-weight: normal;
     color: black;
+  }
+}
+
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  p {
+    padding: 0;
+    margin: 0;
   }
 }

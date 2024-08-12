@@ -1,3 +1,5 @@
+@let movieMap = movieDetails$ | async;
+<div class="movie-container">
 @for(movie of movies; track movie.id) {
   <div class="movie-item">
     <div class="poster">
@@ -11,10 +13,18 @@
     </div>
     <div class="description">
       <h3><a [routerLink]="['movie', movie.id]">{{movie.title}}</a></h3>
-      <p>Rating: {{movie.rating}}</p>
+      <div class="movie-details">
+        <p>Rating: {{movie.rating || 'None'}}</p>
+        @let movieDetails = movieMap?.get(movie.id);
+        @if (movieDetails) {
+          <p>Duration: {{movieDetails.duration}}</p>
+          <p>{{movieDetails.ratingValue || 'None'}} / {{movieDetails.bestRating}} Stars</p>
+          <p>Summary: {{movieDetails.summary || 'No summary'}}</p>
+        }
+      </div>
     </div>
-
   </div>
 } @empty {
   <div>No results.</div>
 }
+</div>

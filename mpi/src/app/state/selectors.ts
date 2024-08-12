@@ -26,3 +26,5 @@ export const selectMovies = createSelector(selectMoviesFeature, (feature) => fea
 export const selectGenreTitles = createSelector(selectGenresFeature, (feature) => {
   return feature.map(g => g.title);
 })
+
+export const selectMovieDetails = createSelector(selectMoviesFeature, (feature) => feature.movieDetails);
