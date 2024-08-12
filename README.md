@@ -1,10 +1,13 @@
 # Moving Picture Interface
  
-In your project’s README, please include details about the following:
+This is an angular application that integrates with a movies API.
 
-- Utilized RXJS stores/selectors/pipes to move async logic away from components
-- Images are optimized by intercepting the src attribute with an Image Loader, which replaces it with a smaller source as per aws media parameters
-- Deep linking works on all application pages
+Try it here: [Moving Picture Interface App](https://mdiehr.github.io/MoviesApp/)
+
+- RXJS stores/selectors/pipes move async logic away from components
+- Images sources are optimized with a custom Image Loader
+- Deep linking works on all pages
+- Automatic build/deploy to GitHub pages via Github Actions
 
 What I would like to improve:
 

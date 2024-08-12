@@ -37,7 +37,6 @@ export class MovieService implements OnDestroy {
       'Authorization': `Bearer ${this.currentToken}`
     }
   }
-
   
   getHealthCheck() {
     return this.http.get<HealthcheckResponse>(`${BASE_URL}/healthcheck`);
