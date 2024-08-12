@@ -44,7 +44,6 @@ export const moviesReducer = createReducer(
   on(MovieActions.retrievedMovieDetails, (state, { movie }) => {
     const newMovieMap = new Map(state.movieDetails);
     newMovieMap.set(movie.id, movie);
-    console.info(`Stored movie ${movie.title}`);
     return {...state, movieDetails: newMovieMap};
   }),
 );
