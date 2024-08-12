@@ -5,7 +5,7 @@ import { MovieState } from "./movies.state";
 import { filter, pipe } from "rxjs";
 
 export const selectAuthFeature = createFeatureSelector<AuthState>('auth');
-export const selectGenresFeature = createFeatureSelector<ReadonlyArray<GenreItem>>('genres');
+export const selectGenresFeature = createFeatureSelector<readonly GenreItem[]>('genres');
 export const selectMoviesFeature = createFeatureSelector<MovieState>('movies');
 
 export const selectToken = createSelector(selectAuthFeature, (authState) => {

@@ -21,9 +21,4 @@ export class MovieDetailsComponent {
   movie$: Observable<MovieExtendedDetail> = this.activatedRoute.params.pipe(
     map((p) => p['id']),
     switchMap(id => this.movieService.getMovieDetail(id)));
-
-  constructor() {
-  }
-
-
 }

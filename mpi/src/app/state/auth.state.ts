@@ -1,4 +1,4 @@
-import { createAction, createActionGroup, createReducer, on, props } from '@ngrx/store';
+import { createActionGroup, createReducer, on, props } from '@ngrx/store';
 
 
 export const AuthActions = createActionGroup({

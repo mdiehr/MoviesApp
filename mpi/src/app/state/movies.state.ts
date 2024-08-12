@@ -12,7 +12,7 @@ export const MovieActions = createActionGroup({
 });
 
 export interface MovieState {
-  movies: ReadonlyArray<MovieItem>;
+  movies: readonly MovieItem[];
   loading: boolean;
   initial: boolean;
   page: number;
@@ -36,7 +36,7 @@ export const moviesReducer = createReducer(
       pageMax: movies.totalPages,
       loading: false, initial: false };
   }),
-  on(MovieActions.fetchingMovies, (state, {}) => {
+  on(MovieActions.fetchingMovies, (state) => {
     return {...state, loading: true };
   }),
 )
@@ -48,7 +48,7 @@ export const GenreActions = createActionGroup({
   },
 });
 
-const initialGenresState: ReadonlyArray<GenreItem> = [];
+const initialGenresState: readonly GenreItem[] = [];
 export const genresReducer = createReducer(
   initialGenresState,
   on(GenreActions.retrievedGenres, (state, { genres }) => {

@@ -8,7 +8,7 @@
     <p>Stars: {{movie.ratingValue || 'None'}} / {{movie.bestRating}}</p>
     @if (movie.posterUrl) {
       <div class="poster">
-        <img [ngSrc]="movie.posterUrl" width="300" height="450" priority />
+        <img [ngSrc]="movie.posterUrl" width="300" height="450" priority alt="Movie Poster Image" />
       </div>
     }
     <p>{{movie.summary}}</p>

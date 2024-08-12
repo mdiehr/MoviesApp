@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MovieService } from '../services/movies.api';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,7 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.less'
 })
-export class SearchbarComponent {
+export class SearchbarComponent implements OnInit {
 
   private store: Store =  inject(Store);
   private movieService: MovieService = inject(MovieService);
@@ -29,9 +29,9 @@ export class SearchbarComponent {
     genre: new FormControl(''),
   });
 
-  private PER_PAGE: number = 6;
+  private PER_PAGE = 6;
 
-  private currentPage: number = 1;
+  private currentPage = 1;
   private currentGenre: string | null = null;
 
   constructor() {
@@ -59,7 +59,7 @@ export class SearchbarComponent {
     })
   }
 
-  handleSubmit($event: any) {
+  handleSubmit($event?: Event) {
     if ($event) {
       // The page will try to POST otherwise
       $event.preventDefault();

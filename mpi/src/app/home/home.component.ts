@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { MoviesComponent } from '../movies/movies.component';
 import { MovieItem } from '../services/models';
@@ -26,7 +26,7 @@ export class HomeComponent {
   public moviesFeature$: Observable<MovieState> = this.store.select(selectMoviesFeature);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
-  public page: number = 1;
+  public page = 1;
   public search?: string;
   public genre?: string;
 
