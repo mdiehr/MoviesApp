@@ -2,9 +2,10 @@
   <a [routerLink]="['/']">Go Back</a>
   @let movie = movie$ | async;
   @if(movie) {
-    <h2>{{movie.title}}</h2>
-    <p>Released {{movie.datePublished}}</p>
+    <h1>{{movie.title}}</h1>
+    <p>Released: {{movie.datePublished}}</p>
     <p>Rating: {{movie.rating}}</p>
+    <p>Stars: {{movie.ratingValue || 'None'}} / {{movie.bestRating}}</p>
     @if (movie.posterUrl) {
       <div class="poster">
         <img [ngSrc]="movie.posterUrl" width="300" height="450" priority />
