@@ -6,7 +6,8 @@ import { IMAGE_CONFIG, IMAGE_LOADER, ImageLoaderConfig } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import { provideState, provideStore } from '@ngrx/store';
 import { authReducer } from './state/auth.state';
-import { genresReducer, moviesReducer } from './state/movies.state';
+import { moviesReducer } from './state/movies.state';
+import { genresReducer } from './state/genre.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [

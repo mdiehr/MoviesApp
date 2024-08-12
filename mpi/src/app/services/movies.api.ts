@@ -4,7 +4,7 @@ import { AuthResponse, GenresResponse, HealthcheckResponse, MovieExtendedDetail,
 import { Store } from "@ngrx/store";
 import { Observable, Subscription } from "rxjs";
 import { selectToken } from "../state/selectors";
-import { GenreActions } from "../state/movies.state";
+import { GenreActions } from "../state/genre.state";
 
 
 const BASE_URL = "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com";

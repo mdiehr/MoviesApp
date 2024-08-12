@@ -1,5 +1,5 @@
 import { createActionGroup, createReducer, emptyProps, on, props } from '@ngrx/store';
-import { GenresResponse, MovieItem, MovieExtendedDetail, MoviesResponse, GenreItem } from '../services/models';
+import { GenresResponse, MovieItem, MovieExtendedDetail, MoviesResponse } from '../services/models';
 
 export const MovieActions = createActionGroup({
   source: 'Movies',
@@ -41,17 +41,3 @@ export const moviesReducer = createReducer(
   }),
 )
 
-export const GenreActions = createActionGroup({
-  source: 'Genres',
-  events: {
-    'Retrieved Genres': props<{ genres: GenresResponse }>(),
-  },
-});
-
-const initialGenresState: readonly GenreItem[] = [];
-export const genresReducer = createReducer(
-  initialGenresState,
-  on(GenreActions.retrievedGenres, (state, { genres }) => {
-    return [...state, ...genres.data];
-  }),
-)
