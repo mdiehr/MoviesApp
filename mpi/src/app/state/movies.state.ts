@@ -41,10 +41,17 @@ export const moviesReducer = createReducer(
   }),
 )
 
+export const GenreActions = createActionGroup({
+  source: 'Genres',
+  events: {
+    'Retrieved Genres': props<{ genres: GenresResponse }>(),
+  },
+});
+
 const initialGenresState: ReadonlyArray<GenreItem> = [];
 export const genresReducer = createReducer(
   initialGenresState,
-  on(MovieActions.retrievedGenres, (_state, { genres }) => {
-    return genres.data;
+  on(GenreActions.retrievedGenres, (state, { genres }) => {
+    return [...state, ...genres.data];
   }),
 )

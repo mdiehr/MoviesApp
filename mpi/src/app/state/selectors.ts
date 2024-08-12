@@ -16,3 +16,7 @@ export const selectIsAuthenticated = createSelector(selectAuthFeature, (authStat
 })
 
 export const selectMovies = createSelector(selectMoviesFeature, (feature) => feature.movies)
+
+export const selectGenreTitles = createSelector(selectGenresFeature, (feature) => {
+  return feature.map(g => g.title);
+})

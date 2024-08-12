@@ -4,6 +4,7 @@ import { AuthResponse, GenresResponse, HealthcheckResponse, MovieExtendedDetail,
 import { Store } from "@ngrx/store";
 import { Observable, Subscription } from "rxjs";
 import { selectToken } from "../state/selectors";
+import { GenreActions } from "../state/movies.state";
 
 
 const BASE_URL = "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com.";
@@ -34,6 +35,20 @@ export class MovieService implements OnDestroy {
       'Accept': 'application/json',
       'Authorization': `Bearer ${this.currentToken}`
     }
+  }
+
+  private genrePage = 1;
+  loadAllGenres() {
+    const limit = 5;
+    const page = this.genrePage;
+    this.getGenres(page, limit).subscribe(result => {
+      this.store.dispatch(GenreActions.retrievedGenres({ genres: result }));
+      // Call again in 1 tick if there are more pages to load
+      if (result.totalPages > page) {
+        this.genrePage += 1;
+        window.setTimeout(() => (this.loadAllGenres()), 0);
+      }
+    });
   }
 
   getHealthCheck() {

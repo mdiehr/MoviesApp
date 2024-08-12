@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { HomeviewComponent } from './homeview/homeview.component';
+import { HomeComponent } from './home/home.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { AuthResolverService } from './services/auth-resolver.service';
 
 export const routes: Routes = [
-  {path: '', component: HomeviewComponent, title: "Search - Moving Picture Interface",
+  {path: '', component: HomeComponent, title: "Search - Moving Picture Interface",
     resolve: {
       isLoggedIn: AuthResolverService
     }
