@@ -5,17 +5,12 @@ import { AuthResolverService } from './services/auth-resolver.service';
 import { MovieTitleResolver } from './services/movie-title-resolver.service';
 
 export const routes: Routes = [
-  {path: '', component: HomeComponent,
+  { path: '', component: HomeComponent,
     title: "Moving Picture Interface - Search",
-    resolve: {
-      isLoggedIn: AuthResolverService
-    }
+    resolve: { isLoggedIn: AuthResolverService }
   },
-  {path: 'movie/:id', component: MovieDetailsComponent,
+  { path: 'movie/:id', component: MovieDetailsComponent,
     title: MovieTitleResolver,
-    // title: "Movie - Moving Picture Interface",
-    resolve: {
-      isLoggedIn: AuthResolverService
-    }
+    resolve: { isLoggedIn: AuthResolverService }
   },
 ];
