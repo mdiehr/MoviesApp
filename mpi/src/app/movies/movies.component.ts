@@ -1,4 +1,4 @@
-import { Component, inject, Input, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MovieItem } from '../services/models';
 import { RouterLink } from '@angular/router';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
@@ -13,7 +13,7 @@ import { selectMovieDetails } from '../state/selectors';
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.less'
 })
-export class MoviesComponent {
+export class MoviesComponent implements OnChanges {
 
   private store: Store = inject(Store);
   private movieService: MovieService = inject(MovieService);
@@ -22,13 +22,8 @@ export class MoviesComponent {
   
   @Input() movies: readonly MovieItem[] | null = [];
 
-  ngOnInit() {
-
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if ("movies" in changes) {
-      console.info('Movies changed');
       if (this.movies) {
         this.movies.forEach(m => {
           this.movieService.requestMovieDetailInBackground(m.id);
