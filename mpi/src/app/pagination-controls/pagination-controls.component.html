@@ -1,0 +1,15 @@
+<div class="page-controls">
+  <div class="controls">
+    <a
+      [class.disabled]="page === 1"
+      [routerLink]="[]"
+      [queryParams]="{ page: page - 1, search, genre }"
+    >Prev</a>
+    (Page {{page}} of {{pageMax}})
+    <a
+      [class.disabled]="page >= pageMax"
+      [routerLink]="[]"
+      [queryParams]="{ page: page + 1, search, genre }"
+    >Next</a>
+  </div>
+</div>

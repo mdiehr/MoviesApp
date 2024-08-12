@@ -9,11 +9,12 @@ import { AsyncPipe } from '@angular/common';
 import { MovieState } from '../state/movies.state';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MovieService } from '../services/movies.api';
+import { PaginationControlsComponent } from '../pagination-controls/pagination-controls.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SearchbarComponent, MoviesComponent, AsyncPipe, RouterLink],
+  imports: [SearchbarComponent, MoviesComponent, AsyncPipe, RouterLink, PaginationControlsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.less'
 })

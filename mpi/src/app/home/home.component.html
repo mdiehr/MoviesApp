@@ -2,32 +2,31 @@
   <app-searchbar></app-searchbar>
 </div>
 
-@let moviesFeature = moviesFeature$ | async;
-@if (moviesFeature) {
-  @if (moviesFeature.initial) {
-    <div>Search by a movie title!</div>
-  }
-  @else if (moviesFeature.loading) {
-    <div>Loading...</div>
+@let movies = moviesFeature$ | async;
+@if (movies) {
+  @if (movies.initial) {
+    <div class="big-message">Start a search to see some movies!</div>
   } @else {
-    <div class="page-controls">
-      <div class="controls">
-        <a [class.disabled]="moviesFeature.page === 1" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page - 1, search: search}">Prev</a>
-        Page {{moviesFeature.page}} of {{moviesFeature.pageMax}}
-        <a [class.disabled]="moviesFeature.page >= moviesFeature.pageMax" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page + 1, search: search}">Next</a>
-      </div>
-    </div>
+    <app-pagination-controls
+      [page]="movies.page"
+      [pageMax]="movies.pageMax"
+      [search]="search"
+      [genre]="genre"
+    ></app-pagination-controls>
 
-    <div>
-      <app-movies [movies]="(movies$ | async)"></app-movies>
-    </div>
-    
-    <div class="page-controls">
-      <div class="controls">
-        <a [class.disabled]="moviesFeature.page === 1" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page - 1, search: search, genre: genre}">Prev</a>
-        <a [class.disabled]="moviesFeature.page >= moviesFeature.pageMax" [routerLink]="[]" [queryParams]="{ page: moviesFeature.page + 1, search: search, genre: genre}">Next</a>
+    @if (movies.loading) {
+      <div class="big-message">Loading...</div>
+    } @else {
+      <div>
+        <app-movies [movies]="(movies$ | async)"></app-movies>
       </div>
-      Page {{moviesFeature.page}} of {{moviesFeature.pageMax}}
-    </div>
+
+      <app-pagination-controls
+        [page]="movies.page"
+        [pageMax]="movies.pageMax"
+        [search]="search"
+        [genre]="genre"
+      ></app-pagination-controls>
+    }
   }
 }
