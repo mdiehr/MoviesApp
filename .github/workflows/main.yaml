@@ -1,0 +1,30 @@
+name: Angular Build
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Build
+      working-directory: ./mpi
+      run: |
+        npm ci
+        npm run build:prod
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v2
+      with:
+        ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}
+        BASE_BRANCH: main
+        BRANCH: gh-pages
+        FOLDER:  mpi/dist/browser
