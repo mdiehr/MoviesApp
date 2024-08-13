@@ -5,11 +5,12 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { MovieService } from '../services/movies.api';
 import { selectMovieDetails } from '../state/selectors';
+import { MovieSmallCardComponent } from '../movie-small-card/movie-small-card.component';
 
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [RouterLink, NgOptimizedImage, AsyncPipe],
+  imports: [RouterLink, NgOptimizedImage, AsyncPipe, MovieSmallCardComponent],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.less'
 })
