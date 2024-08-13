@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Viewport was scrolling on mobile despite no content being to the side of the body.
+// https://stackoverflow.com/questions/4192277/disable-horizontal-scroll-on-mobile-web
+html, body {
+  overflow-x: hidden;
+}
+body {
+  position: relative
+}

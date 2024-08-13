@@ -1,17 +1,19 @@
 <div>
   <form [formGroup]="searchForm" (ngSubmit)="handleSubmit($event)">
-    <label for="title">Search by title:</label>
-    <input id="title" type="text" placeholder="Movie Title" formControlName="title" />
+    <div class="form-item">
+      <label for="title">Search by title:</label>
+      <input id="title" type="text" placeholder="Movie Title" formControlName="title" />
+    </div>
     
-    <label for="genre">Search by genre:</label>
-    <!-- <input id="genre" type="text" placeholder="Movie Genre" formControlName="genre" /> -->
-
-    <select id="genre" formControlName="genre">
-        <option value="">Any</option>
-      @for(genre of (genres$ | async); track genre) {
-        <option [value]="genre">{{genre}}</option>
-      }
-    </select>
+    <div class="form-item">
+      <label for="genre">Search by genre:</label>
+      <select id="genre" formControlName="genre">
+          <option value="">Any</option>
+        @for(genre of (genres$ | async); track genre) {
+          <option [value]="genre">{{genre}}</option>
+        }
+      </select>
+    </div>
 
     <button type="submit">Search</button>
     <input type="submit" style="display: none" />

@@ -19,7 +19,7 @@
         @if (movieDetails) {
           <p>Duration: {{movieDetails.duration}}</p>
           <p>{{movieDetails.ratingValue || 'None'}} / {{movieDetails.bestRating}} Stars</p>
-          <p>Summary: {{movieDetails.summary || 'No summary'}}</p>
+          <p><em>{{movieDetails.summary || 'No summary'}}</em></p>
         }
       </div>
     </div>
