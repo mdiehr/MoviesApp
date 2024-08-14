@@ -3,6 +3,10 @@
 
 <main class="main">
   <h1>Moving Picture Interface</h1>
+  @let auth = authStatus$ | async;
+  @if (auth && auth.loading) {
+    <div>Loading...</div>
+  }
   <div class="content">
     <router-outlet />
   </div>

@@ -1,34 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchbarComponent } from './searchbar.component';
-import { provideMockStore } from '@ngrx/store/testing';
+import { ConnectionStatusComponent } from './connection-status.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { provideMockStore } from '@ngrx/store/testing';
 
-describe('SearchbarComponent', () => {
-  let component: SearchbarComponent;
-  let fixture: ComponentFixture<SearchbarComponent>;
+describe('ConnectionStatusComponent', () => {
+  let component: ConnectionStatusComponent;
+  let fixture: ComponentFixture<ConnectionStatusComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchbarComponent],
+      imports: [ConnectionStatusComponent],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
         provideMockStore({}),
-        { provide: ActivatedRoute,  
-          useValue: 
-          {
-            queryParamMap: of({page: 1})
-          }
-        }
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SearchbarComponent);
+    fixture = TestBed.createComponent(ConnectionStatusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

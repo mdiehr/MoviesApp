@@ -1,0 +1,23 @@
+
+@let auth = authStatus$ | async;
+@if (auth) {
+  @if (!auth.healthy) {
+    <h3>There was an error connecting to application.</h3>
+  } @else if (auth.error) {
+    <h3>There was an error authenticating with the application.</h3>
+  } @else {
+    <h3>There was an error but it seems to have resolved.</h3>
+  }
+
+  <ul>
+    <li>Logged In: {{auth.loggedIn}}</li>
+    <li>API Healthy: {{auth.healthy}}</li>
+    @if (auth.error) {
+      <li>Error: {{auth.error}}</li>
+      <li>Error Message: {{auth.errorMessage}}</li>
+      <li>Token: {{auth.token ? "(hidden)" : "(none)"}}</li>
+    }
+    <li>Loading: {{auth.loading}}</li>
+  </ul>
+}
+<p><a href="/">Try again</a></p>

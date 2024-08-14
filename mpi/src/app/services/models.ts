@@ -1,4 +1,4 @@
-// API from https://github.com/<removed>/movies-api/tree/main
+// API Spec from https://github.com/<removed>/movies-api/tree/main
 
 export interface AuthResponse {
   token: string;

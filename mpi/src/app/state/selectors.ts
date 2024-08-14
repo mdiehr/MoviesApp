@@ -12,14 +12,20 @@ export const selectToken = createSelector(selectAuthFeature, (authState) => {
   return authState.token;
 })
 
-export const selectAuthStatus = createSelector(selectAuthFeature, (authState) => {
+export const selectIsLoggedIn = createSelector(selectAuthFeature, (authState) => {
   return authState.loggedIn;
-})
+});
+
+// Auth status but only after done loading
+export const selectAuthStatusSettled = pipe(
+  select(selectAuthFeature),
+  filter(authStatus => !authStatus.loading),
+)
 
 export const selectIsAuthenticated = pipe(
-  select(selectAuthStatus),
+  select(selectIsLoggedIn),
   filter(val => val)
-)
+);
 
 export const selectMovies = createSelector(selectMoviesFeature, (feature) => feature.movies)
 
