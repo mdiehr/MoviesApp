@@ -1,0 +1,16 @@
+<h3>There was an error loading the application.</h3>
+<p>
+  @let auth = authStatus$ | async;
+  @if (auth) {
+    <ul>
+      <li>Loading: {{auth.loading}}</li>
+      <li>Token: {{auth.token ? "(hidden)" : "(none)"}}</li>
+      <li>Logged In: {{auth.loggedIn}}</li>
+      <li>API Healthy: {{auth.healthy}}</li>
+      <li>Error: {{auth.error}}</li>
+      <li>Error Message: {{auth.errorMessage}}</li>
+    </ul>
+  }
+</p>
+
+<p><a href="/">Try again</a></p>
