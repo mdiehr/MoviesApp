@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { MovieExtendedDetail } from '../services/models';
-import { MovieService } from '../services/movies.api';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -14,7 +14,7 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 })
 export class MovieDetailsComponent {
 
-  private movieService: MovieService = inject(MovieService);
+  private movieService: MoviesService = inject(MoviesService);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   // Map the id in the route params to the movie details

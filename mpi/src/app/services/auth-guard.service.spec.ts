@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthResolverService } from './auth-resolver.service';
+import { AuthGuardService } from './auth-guard.service';
 import { provideMockStore } from '@ngrx/store/testing';
 
-describe('AuthResolverService', () => {
-  let service: AuthResolverService;
+describe('AuthGuardService', () => {
+  let service: AuthGuardService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -12,7 +12,7 @@ describe('AuthResolverService', () => {
         provideMockStore({}),
       ]
     });
-    service = TestBed.inject(AuthResolverService);
+    service = TestBed.inject(AuthGuardService);
   });
 
   it('should be created', () => {

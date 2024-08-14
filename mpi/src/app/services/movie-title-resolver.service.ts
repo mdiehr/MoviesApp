@@ -1,16 +1,16 @@
 import { inject, Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
 import { map, mergeMap, Observable } from "rxjs";
-import { MovieService } from "./movies.api";
 import { Store } from "@ngrx/store";
 import { selectIsAuthenticated } from "../state/selectors";
+import { MoviesService } from "./movies.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieTitleResolver implements Resolve<string>{
 
-  private movieService: MovieService = inject(MovieService);
+  private movieService: MoviesService = inject(MoviesService);
   private appTitle = "Moving Picture Interface";
 
   private store: Store = inject(Store);

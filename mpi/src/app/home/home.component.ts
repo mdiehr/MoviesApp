@@ -8,8 +8,8 @@ import { selectMovies, selectMoviesFeature } from '../state/selectors';
 import { AsyncPipe } from '@angular/common';
 import { MovieState } from '../state/movies.state';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { MovieService } from '../services/movies.api';
 import { PaginationControlsComponent } from '../pagination-controls/pagination-controls.component';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +21,7 @@ import { PaginationControlsComponent } from '../pagination-controls/pagination-c
 export class HomeComponent {
 
   private store: Store = inject(Store);
-  private movieService: MovieService = inject(MovieService);
+  private movieService: MoviesService = inject(MoviesService);
 
   public movies$: Observable<readonly MovieItem[]> = this.store.select(selectMovies);
   public moviesFeature$: Observable<MovieState> = this.store.select(selectMoviesFeature);
