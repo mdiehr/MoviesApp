@@ -6,6 +6,7 @@ import { MovieActions } from '../state/movies.state';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { selectGenreTitles } from '../state/selectors';
 import { AsyncPipe } from '@angular/common';
+import { RESULTS_PER_PAGE } from '../constants/config';
 
 @Component({
   selector: 'app-searchbar',
@@ -28,8 +29,6 @@ export class SearchbarComponent implements OnInit {
     title: new FormControl(''),
     genre: new FormControl(''),
   });
-
-  private PER_PAGE = 12;
 
   private currentPage = 1;
   private currentGenre: string | null = null;
@@ -75,7 +74,7 @@ export class SearchbarComponent implements OnInit {
     if (title && title !== '') {
       // Go to the movies
       this.store.dispatch(MovieActions.fetchingMovies());
-      this.movieService.getMovies(page, this.PER_PAGE, title, genre || undefined).subscribe(movies => {
+      this.movieService.getMovies(page, RESULTS_PER_PAGE, title, genre || undefined).subscribe(movies => {
           this.store.dispatch(MovieActions.retrievedMovies({movies, page}))
         });
     }

@@ -6,11 +6,7 @@ import { firstValueFrom, Observable, Subscription, tap } from "rxjs";
 import { selectGenresFeature, selectMovieDetails, selectToken } from "../state/selectors";
 import { GenreActions } from "../state/genre.state";
 import { MovieActions } from "../state/movies.state";
-
-
-// TODO: Stick this in an environment variable or configuration
-const BASE_URL = "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com";
-
+import { BASE_URL } from "../constants/config";
 
 @Injectable({  providedIn: 'root',})
 export class MovieService implements OnDestroy {
