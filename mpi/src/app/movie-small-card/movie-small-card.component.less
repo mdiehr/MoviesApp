@@ -1,19 +1,28 @@
 
-.movie-item {
-  flex-grow: 1;
-  flex-basis: 350px;
-  max-width: 550px;
+:host {
   padding: 0.25rem;
-  gap: 1.0rem;
-  display: flex;
-  flex-direction: row;
   border: 1px solid lightgray;
   border-radius: 4px;
 }
 
-.poster {
+.movie-item {
+  display: flex;
+  flex-direction: row;
+  gap: 1.0rem;
+}
+
+.poster, .image-placeholder {
   width: 100px;
   height: 150px;
+}
+
+.image-placeholder {
+  background-color: rgba(212, 212, 212, 0.479);
+  display: flex;
+  color: rgb(177, 177, 177);
+  font-size: 8pt;
+  align-items: center;
+  justify-content: center;
 }
 
 h3 {

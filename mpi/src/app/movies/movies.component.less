@@ -3,39 +3,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1.0rem;
-}
+  align-items: stretch;
 
-.movie-item {
-  flex-grow: 1;
-  flex-basis: 350px;
-  padding: 0.25rem;
-  gap: 1.0rem;
-  display: flex;
-  flex-direction: row;
-  border: 1px solid lightgray;
-  border-radius: 4px;
-}
-
-.poster {
-  width: 100px;
-  height: 150px;
-}
-
-h3 {
-  margin-top: 0;
-  a {
-    font-size: 16pt;
-    font-weight: normal;
-    color: black;
-  }
-}
-
-.movie-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  p {
-    padding: 0;
-    margin: 0;
+  > * {
+    flex-grow: 1;
+    flex-basis: 350px;
   }
 }

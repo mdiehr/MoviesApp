@@ -6,6 +6,7 @@
 @if (movies) {
   @if (movies.initial) {
     <div class="big-message">Start a search to see some movies!</div>
+    <button [routerLink]="['/']" [queryParams]="{search: 'The'}">Or try a pre-made search.</button>
   } @else {
     <app-pagination-controls
       [page]="movies.page"
