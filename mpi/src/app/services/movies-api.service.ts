@@ -5,6 +5,8 @@ import { BASE_URL } from "../constants/config";
 
 // API Spec from https://github.com/<removed>/movies-api/tree/main
 
+// As much as possible, this service accesses the REST apis without additional logic or side effects
+
 @Injectable({
   providedIn: 'root'
 })

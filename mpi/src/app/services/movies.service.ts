@@ -38,7 +38,7 @@ export class MoviesService implements OnDestroy {
     return this.api.getMovies(page, limit, search, genre);
   }
   
-
+  // Loads the list of genres from the service (first time only)
   async loadAllGenres() {
     const genres = await firstValueFrom(this.store.select(selectGenresFeature))
     if (genres.length === 0) {
@@ -46,6 +46,7 @@ export class MoviesService implements OnDestroy {
     }
   }
 
+  // Load successive pages of genres, but the initial limit is set so we probably only need to GET once
   private genrePage = 1;
   loadGenresRecursive(page: number) {
     const limit = 25; // As of publication there are ~22 genres
@@ -59,6 +60,7 @@ export class MoviesService implements OnDestroy {
     });
   }
 
+  // Get the detail but also stick it into the store
   getMovieDetail(id: string) {
     return this.api.getMovieExtendedDetail(id).pipe(
       tap(
@@ -67,7 +69,9 @@ export class MoviesService implements OnDestroy {
     );
   }
 
-  // This is like getMovieDetail but it uses the movies data store as a cache, and doesn't return anything
+  // This is like getMovieDetail but self-subscribes and doesn't return anything
+  // This is so that a component can request a movie detail separately from
+  // handling the result, which will come through the data store
   async requestMovieDetailInBackground(id: string) {
     // Check the data store
     const movieMap = await firstValueFrom(this.store.select(selectMovieDetails))
