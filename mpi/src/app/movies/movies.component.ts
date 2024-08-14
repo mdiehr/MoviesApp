@@ -3,9 +3,9 @@ import { MovieItem } from '../services/models';
 import { RouterLink } from '@angular/router';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { MovieService } from '../services/movies.api';
 import { selectMovieDetails } from '../state/selectors';
 import { MovieSmallCardComponent } from '../movie-small-card/movie-small-card.component';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-movies',
@@ -17,7 +17,7 @@ import { MovieSmallCardComponent } from '../movie-small-card/movie-small-card.co
 export class MoviesComponent implements OnChanges {
 
   private store: Store = inject(Store);
-  private movieService: MovieService = inject(MovieService);
+  private movieService: MoviesService = inject(MoviesService);
 
   movieDetails$ = this.store.select(selectMovieDetails);
   

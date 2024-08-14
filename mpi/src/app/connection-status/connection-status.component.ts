@@ -4,7 +4,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { AuthActions, AuthState } from '../state/auth.state';
 import { selectAuthFeature } from '../state/selectors';
 import { AsyncPipe } from '@angular/common';
-import { MovieService } from '../services/movies.api';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-connection-status',
@@ -15,7 +15,7 @@ import { MovieService } from '../services/movies.api';
 })
 export class ConnectionStatusComponent {
 
-  private movieService: MovieService = inject(MovieService);
+  private movieService: MoviesService = inject(MoviesService);
   private store: Store = inject(Store);
   authStatus$: Observable<AuthState> = this.store.select(selectAuthFeature);
   

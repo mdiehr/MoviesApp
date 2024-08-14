@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MovieService } from '../services/movies.api';
 import { Store } from '@ngrx/store';
 import { MovieActions } from '../state/movies.state';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { selectGenreTitles } from '../state/selectors';
 import { AsyncPipe } from '@angular/common';
 import { RESULTS_PER_PAGE } from '../constants/config';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-searchbar',
@@ -18,7 +18,7 @@ import { RESULTS_PER_PAGE } from '../constants/config';
 export class SearchbarComponent implements OnInit {
 
   private store: Store =  inject(Store);
-  private movieService: MovieService = inject(MovieService);
+  private movieService: MoviesService = inject(MoviesService);
 
   private router: Router = inject(Router);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -74,7 +74,8 @@ export class SearchbarComponent implements OnInit {
     if (title && title !== '') {
       // Go to the movies
       this.store.dispatch(MovieActions.fetchingMovies());
-      this.movieService.getMovies(page, RESULTS_PER_PAGE, title, genre || undefined).subscribe(movies => {
+      this.movieService.getMovies(page, RESULTS_PER_PAGE, title, genre || undefined)
+        .subscribe(movies => {
           this.store.dispatch(MovieActions.retrievedMovies({movies, page}))
         });
     }

@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MovieService } from './services/movies.api';
 import { Store } from '@ngrx/store';
 import { AuthActions } from './state/auth.state';
 import { catchError, throwError } from 'rxjs';
 import { selectAuthFeature } from './state/selectors';
 import { AsyncPipe } from '@angular/common';
+import { MoviesService } from './services/movies.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ imports: [RouterOutlet, AsyncPipe],
 })
 export class AppComponent {
   private store: Store = inject(Store);
-  private movieService: MovieService = inject(MovieService);
+  private movieService: MoviesService = inject(MoviesService);
   authStatus$ = this.store.select(selectAuthFeature);
 
   constructor() {
