@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AuthState } from '../state/auth.state';
+import { catchError, Observable, throwError } from 'rxjs';
+import { AuthActions, AuthState } from '../state/auth.state';
 import { selectAuthFeature } from '../state/selectors';
 import { AsyncPipe } from '@angular/common';
+import { MovieService } from '../services/movies.api';
 
 @Component({
   selector: 'app-connection-status',
@@ -14,7 +15,16 @@ import { AsyncPipe } from '@angular/common';
 })
 export class ConnectionStatusComponent {
 
+  private movieService: MovieService = inject(MovieService);
   private store: Store = inject(Store);
   authStatus$: Observable<AuthState> = this.store.select(selectAuthFeature);
   
+  constructor() {
+    this.movieService.getHealthCheck().pipe(catchError((error) => {
+      this.store.dispatch(AuthActions.healthcheck({ healthy: false }));
+      return throwError(() => error);
+    })).subscribe(result => {
+      this.store.dispatch(AuthActions.healthcheck({ healthy: result.contentful }));
+    });
+  }
 }

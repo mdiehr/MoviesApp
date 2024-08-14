@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, GuardResult, MaybeAsync, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthState } from '../state/auth.state';
 import { selectAuthStatusSettled } from '../state/selectors';
@@ -14,9 +14,8 @@ export class AuthGuardService implements CanActivate {
   private router: Router = inject(Router);
   private authStatus$: Observable<AuthState> = this.store.pipe(selectAuthStatusSettled);
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
+  canActivate(): MaybeAsync<GuardResult> {
     return this.authStatus$.pipe(map(authStatus => {
-      console.info(authStatus);
       if (authStatus.loggedIn) {
         return true;
       } else {
