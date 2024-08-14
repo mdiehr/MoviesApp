@@ -2,6 +2,9 @@
  
 This is an angular application that integrates with a movies API.
 
+It was written in Typescript with [Angular 18](https://angular.dev/) and uses [RXJS](https://rxjs.dev/) to handle
+data stores and asynchronous logic.
+
 Try it here: [Moving Picture Interface App](https://mdiehr.github.io/MoviesApp/)
 
 - RXJS stores/selectors/pipes move async logic away from components
@@ -13,6 +16,7 @@ Try it here: [Moving Picture Interface App](https://mdiehr.github.io/MoviesApp/)
 What I would like to improve:
 
 - Loading spinners for components in-progress
-- More/better error handling
-- Unit testing
+- Less page layout re-flow when navigating
+- More/better error handling for HTTP requests
+- Unit testing that tests actual functionality instead of merely passing after constructing the component
 
